@@ -216,12 +216,12 @@ main, footer {
 .yellow {
     color: #f1c40f;
     text-shadow: 1px 1px black;
-    transition: ease-in-out 0.3s;
+    transition: color 0.3s ease-in-out, text-shadow 0.7s ease-in-out;
 }
 
 .yellow:hover {
     color: #b48c36;
-    transition: ease-in-out 0.3s;
+    text-shadow: 10px 10px #000;
 }
 
 .content-photo {
