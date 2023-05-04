@@ -27,7 +27,8 @@ const behaviour = () => {
         const log = document.createElement('a');
         log.innerHTML = "Log Out";
         log.href = "#";
-        const dropdown = document.querySelectorAll('.dropdown-content')[1];
+        const dropdown = document.querySelectorAll('.user')[0];
+        console.log(dropdown)
         dropdown.appendChild(greeting);
         dropdown.appendChild(log);
         log.addEventListener('click', function() {
@@ -35,11 +36,59 @@ const behaviour = () => {
             window.location.href = 'index.html';
             behaviour();
         });
+        const cart = document.createElement('div');
+        cart.classList.add('dropdown');
+        const cartIcon = document.createElement('span');
+        cartIcon.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+        cart.appendChild(cartIcon);
+        const cartContent = document.createElement('div');
+        cartContent.classList.add('dropdown-content');
+
+        if (localStorage.getItem('orders') === null) {
+            localStorage.setItem('orders', JSON.stringify([]));
+        }
+
+        let cartItems = JSON.parse(localStorage.getItem('orders'));
+        cartItems.forEach(item => {
+            const cartItem = document.createElement('p');
+            cartItem.innerHTML = item.name;
+            cartContent.appendChild(cartItem);
+        });
+
+        if (cartItems.length === 0) {
+            const cartItem = document.createElement('p');
+            cartItem.innerHTML = "No items in cart";
+            cartContent.appendChild(cartItem);
+        } else {
+            let clear = document.createElement('button');
+            let checkout = document.createElement('button');
+            checkout.innerHTML = "Send Order";
+            checkout.addEventListener('click', function() {
+                alert('Your order has been sent!');
+                localStorage.removeItem('orders');
+                window.location.href = 'index.html';
+            });
+            clear.innerHTML= "Clear Cart";
+            clear.addEventListener('click', function() {
+                localStorage.removeItem('orders');
+                window.location.reload();
+            });
+            clear.classList.add('dropdown-btn');
+            checkout.classList.add('dropdown-btn');
+            cartContent.appendChild(clear);
+            cartContent.appendChild(checkout);
+        }
+
+        cart.appendChild(cartContent);
+
+        const navBar = document.querySelector('.header-nav ul');
+        // first child of navbar
+        navBar.insertBefore(cart, navBar.firstChild);
     } else {
         const log = document.createElement('a');
         log.innerHTML = "Log In";
         log.href = "login.html";
-        const dropdown = document.querySelectorAll('.dropdown-content')[1];
+        const dropdown = document.querySelectorAll(' .user')[0];
         dropdown.appendChild(log);
         const sign = document.createElement('a');
         sign.innerHTML = "Sign Up";

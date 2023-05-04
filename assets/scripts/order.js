@@ -1,7 +1,25 @@
-
-
 const menu_items = document.querySelectorAll('.menu-grid-item');
 const parsed_meals = [];
+const order_buttons = [];
+
+addOrderButton = (menu_item) => {
+    let orderButton = document.createElement('button');
+    orderButton.classList.add('order-btn');
+    orderButton.textContent = 'Order';
+    menu_item.appendChild(orderButton);
+    order_buttons.push(orderButton);
+}
+
+placeOrder = (meal) => {
+    let orders = JSON.parse(localStorage.getItem('orders'));
+    if (!orders) {
+        orders = [];
+    }
+    orders.push(meal);
+    localStorage.setItem('orders', JSON.stringify(orders));
+    console.log(orders);
+    window.location.reload();
+}
 menu_items.forEach(item => {
     let meal = {};
     meal.name = item.querySelector('h4').textContent.trim();
@@ -10,6 +28,14 @@ menu_items.forEach(item => {
     meal.price = meal.price.split('\n')[0].trim();
     meal.price = parseFloat(meal.price);
     parsed_meals.push(meal);
+    addOrderButton(item);
+});
+
+order_buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        placeOrder(parsed_meals[order_buttons.indexOf(button)]);
+    });
 });
 
 let recommended = document.createElement('div');
@@ -22,6 +48,7 @@ if (JSON.parse(localStorage.getItem('logged'))) {
 } else {
     recTitle.textContent = 'Check this out! ';
 }
+
 recTitle.textContent += 'Our chef recommends:';
 recommended.appendChild(recTitle);
 let recMeal = document.createElement('h4');
