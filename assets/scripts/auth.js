@@ -15,9 +15,7 @@ const invalidateField = (input, message) => {
 const insertUserInDB = () => {
     const form = document.querySelector(".acc-form");
     const inputs = Array.from(form.querySelectorAll(".acc-input input"));
-    console.log(inputs);
     const obs = form.querySelector(".acc-input textarea");
-    console.log(obs);
     const user = {
         last_name: inputs[0].value,
         first_name: inputs[1].value,
@@ -98,7 +96,7 @@ const validateForm = () => {
     return valid;
 }
 
-submitBtn.addEventListener("click", function() {
+const submit = () => {
     let ans = validateForm();
     if (!ans) {
         return;
@@ -107,21 +105,18 @@ submitBtn.addEventListener("click", function() {
     switch (formType) {
         case 'signup': {
             insertUserInDB();
-            localStorage.setItem('loggedUser', JSON.stringify(inputs[2].value));
+            localStorage.setItem('loggedUser', inputs[2].value);
             localStorage.setItem('logged', JSON.stringify(true));
             break;
         }
         case 'login': {
-            console.log("login");
-            // check if user exists in DB
             const form = document.querySelector(".acc-form");
             const inputs = Array.from(form.querySelectorAll(".acc-input input"));
             const user = JSON.parse(localStorage.getItem(inputs[0].value));
-            console.log(user);
             if (user) {
                 if (user.password === inputs[1].value) {
                     localStorage.setItem('logged', JSON.stringify(true));
-                    localStorage.setItem('loggedUser', JSON.stringify(inputs[0].value));
+                    localStorage.setItem('loggedUser', inputs[0].value);
                 } else {
                     invalidateField(inputs[1], "Incorrect password!");
                     ans = false;
@@ -134,7 +129,6 @@ submitBtn.addEventListener("click", function() {
             }
         }
     }
-    console.log(formType);
     if (ans) {
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0";
@@ -148,8 +142,13 @@ submitBtn.addEventListener("click", function() {
 
         }, submitDuration);
     }
+}
+submitBtn.addEventListener("click", function() {
+    submit();
 });
 
-console.log(localStorage.getItem('y@y.com'))
-const inputs = Array.from(document.querySelectorAll(".acc-input input"));
-console.log(inputs)
+window.addEventListener("keydown", function(e) {
+    if (e.key === 'Enter') {
+        submit();
+    }
+});

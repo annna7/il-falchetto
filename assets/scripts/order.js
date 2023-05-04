@@ -11,13 +11,12 @@ addOrderButton = (menu_item) => {
 }
 
 placeOrder = (meal) => {
-    let orders = JSON.parse(localStorage.getItem('orders'));
-    if (!orders) {
-        orders = [];
+    let user_orders = getCurrentUser().orders;
+    if (!user_orders) {
+        user_orders = [];
     }
-    orders.push(meal);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    console.log(orders);
+    user_orders.push(meal);
+    localStorage.setItem(localStorage.getItem('loggedUser'), JSON.stringify({ ...getCurrentUser(), orders: JSON.parse(JSON.stringify(user_orders))}));
     window.location.reload();
 }
 menu_items.forEach(item => {
@@ -41,7 +40,6 @@ order_buttons.forEach(button => {
 let recommended = document.createElement('div');
 recommended.classList.add('recommended');
 let recIndex = Math.floor(Math.random() * menu_items.length);
-console.log(recIndex);
 let recTitle = document.createElement('h3');
 if (JSON.parse(localStorage.getItem('logged'))) {
     recTitle.textContent = getCurrentUser().first_name + ' ' + getCurrentUser().last_name + ', check this out! ';
@@ -59,5 +57,3 @@ recommended.appendChild(recMeal);
 recommended.appendChild(textMeal);
 const content = document.querySelector('.content');
 content.insertBefore(recommended, content.firstChild);
-console.log(content);
-console.log(recommended)

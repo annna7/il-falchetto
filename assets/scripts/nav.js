@@ -1,17 +1,8 @@
-/*
-<li>
-                <div class="dropdown">
-                    <span><i class="fas fa-user"></i></span>
-                    <div class="dropdown-content">
-                        <a href="login.html">Log In</a>
-                        <a href="signup.html">Sign Up</a>
-                    </div>
-                </div>
-              </li>
- */
+// localStorage.setItem('logged', JSON.stringify(true));
+// localStorage.setItem('loggedUser', 'annapecheanu1@gmail.com');
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem(JSON.parse(localStorage.getItem('loggedUser'))));
+    return JSON.parse(localStorage.getItem(localStorage.getItem('loggedUser')));
 }
 const behaviour = () => {
     const isLogged = JSON.parse(localStorage.getItem('logged'));
@@ -28,7 +19,6 @@ const behaviour = () => {
         log.innerHTML = "Log Out";
         log.href = "#";
         const dropdown = document.querySelectorAll('.user')[0];
-        console.log(dropdown)
         dropdown.appendChild(greeting);
         dropdown.appendChild(log);
         log.addEventListener('click', function() {
@@ -43,12 +33,11 @@ const behaviour = () => {
         cart.appendChild(cartIcon);
         const cartContent = document.createElement('div');
         cartContent.classList.add('dropdown-content');
-
-        if (localStorage.getItem('orders') === null) {
-            localStorage.setItem('orders', JSON.stringify([]));
+        if (getCurrentUser().orders === null || getCurrentUser().orders === undefined) {
+            localStorage.setItem(localStorage.getItem('loggedUser'), JSON.stringify({ ...getCurrentUser(), orders: JSON.parse(JSON.stringify([]))}));
         }
 
-        let cartItems = JSON.parse(localStorage.getItem('orders'));
+        const cartItems = getCurrentUser().orders;
         cartItems.forEach(item => {
             const cartItem = document.createElement('p');
             cartItem.innerHTML = item.name;
@@ -65,12 +54,12 @@ const behaviour = () => {
             checkout.innerHTML = "Send Order";
             checkout.addEventListener('click', function() {
                 alert('Your order has been sent!');
-                localStorage.removeItem('orders');
+                localStorage.setItem(localStorage.getItem('loggedUser'), JSON.stringify({ ...getCurrentUser(), orders: JSON.parse(JSON.stringify([]))}));
                 window.location.href = 'index.html';
             });
             clear.innerHTML= "Clear Cart";
             clear.addEventListener('click', function() {
-                localStorage.removeItem('orders');
+                localStorage.setItem(localStorage.getItem('loggedUser'), JSON.stringify({ ...getCurrentUser(), orders: JSON.parse(JSON.stringify([]))}));
                 window.location.reload();
             });
             clear.classList.add('dropdown-btn');
@@ -82,7 +71,6 @@ const behaviour = () => {
         cart.appendChild(cartContent);
 
         const navBar = document.querySelector('.header-nav ul');
-        // first child of navbar
         navBar.insertBefore(cart, navBar.firstChild);
     } else {
         const log = document.createElement('a');
