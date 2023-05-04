@@ -112,7 +112,7 @@ nav ul>li:hover, .header-flex h1:hover {
     box-shadow: 3px 3px #f1c40f;
 }
 
-.dropdown-content a {
+.dropdown-content a, p {
     padding: max(1em, 15px);
     text-decoration: none;
     display: block;
@@ -202,6 +202,7 @@ main, footer {
     top: 100px;
     position: relative;
     width: 100vw;
+    font-size: 1.5em;
 }
 
 .flex-review {
@@ -412,9 +413,13 @@ blockquote {
 
 .gallery-header h1 {
     font-family: 'Vollkorn', cursive;
-    font-size: 3em;
+    font-size: 4em;
     color: #332f30;
     text-transform: uppercase;
+}
+
+.gallery-header h3 {
+    font-size: 2em;
 }
 
 .gallery {
@@ -424,7 +429,7 @@ blockquote {
     height: 100%;
     max-width: 95%;
     grid-gap: 5px;
-    margin: 30px;
+    margin: 30px auto;
 }
 
 .gallery-item {
@@ -524,6 +529,229 @@ blockquote {
         transform: scale(1);
     }
 }
+
+.acc-wrapper {
+    width: 100%;
+    margin: 90px auto;
+    padding: 70px;
+    max-width: 50%;
+    border-radius: 20px;
+    background-color: #8c715b;
+    box-shadow: 1px 1px 10px #c59975;
+}
+
+.acc-wrapper h2 {
+    font-size: 3em;
+    text-align: center;
+    color: #332f30;
+    text-shadow: 3px 3px #c59975;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.acc-input {
+    margin-bottom: 25px;
+}
+
+.acc-input input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #debfa6;
+    margin-bottom: 5px;
+    border: none;
+    border-bottom: 1px solid #c59975;
+    outline: none;
+    background: transparent;
+    font-family: Vollkorn, 'cursive';
+}
+
+.acc-input label {
+    font-size: 1.3em;
+}
+
+.acc-form .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.acc-form .submit button {
+    width: fit-content;
+    padding: 20px 50px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 20px;
+    background-color: #debfa6;
+    color: #332f30;
+    font-size: 1.2em;
+    font-family: Vollkorn, 'cursive';
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acc-form .submit button:hover {
+    background-color: #fde3ce;
+    font-weight: bold;
+}
+
+.btn-running button {
+    visibility: hidden;
+}
+
+.btn__progress {
+    position: absolute;
+    top: -0.5em;
+    width: 3em;
+    height: 3em;
+    visibility: hidden;
+}
+.btn__progress-track {
+    r: 12px;
+    stroke: #333333;
+    stroke-width: 24;
+}
+.btn__progress-fill {
+    stroke: #debfa6;
+    stroke-dashoffset: 125.66;
+}
+.btn__progress-check {
+    stroke: hsl(0,0%,100%);
+    stroke-dashoffset: 34;
+}
+
+/* Both states */
+.btn--running,
+.btn--done {
+    left: 45%;
+    top: 30px;
+    outline: none;
+    pointer-events: none;
+    width: 3em;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+.btn--running button,
+.btn--done button {
+    visibility: hidden;
+    /*transition:*/
+    /*        background-color 0.3s ease-in-out,*/
+    /*        visibility 0.3s steps(1);*/
+}
+.btn--running .btn__progress,
+.btn--done .btn__progress {
+    visibility: visible;
+}
+
+/* Running state */
+.btn--running button {
+    background-color: #8c715b;
+    visibility: hidden;
+}
+.btn--running .btn__progress {
+    /*transition: visibility 0.3s 0.3s steps(1,start);*/
+}
+.btn--running .btn__progress-track {
+    r: 20px;
+    stroke-width: 8;
+    transition:
+            r 0.3s 0.3s ease-in-out,
+            stroke-width 0.3s 0.3s ease-in-out;
+}
+.btn--running .btn__progress-fill {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 2s 0.6s linear;
+}
+
+/* Done state */
+.btn--done .btn__progress-track {
+    stroke: #332f30;
+    transition:
+            r 0.3s ease-in-out,
+            stroke-width 0.3s ease-in-out;
+}
+.btn--done .btn__progress-check {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.3s 0.3s ease-out;
+}
+
+.radio-container {
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 15px;
+    gap: 30px;
+}
+
+.radio-container label {
+    font-size: 1.3em;
+    color: #332f30;
+    text-shadow: 3px 3px #c59975;
+    text-transform: uppercase;
+}
+
+.radio-container input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+input[type="radio"] {
+    appearance: none;
+    background-color: #debfa6;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #333333;
+}
+
+.acc-input--error {
+    border-bottom: 1px solid red;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 1em;
+    color: #debfa6;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #c59975;
+    border-radius: 10px;
+    padding: 15px;
+    outline: none;
+    background-color: #333333;
+    font-family: Vollkorn, 'cursive';
+    margin-top: 20px;
+}
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
 @media screen and (max-width: 1000px) {
     .gallery {
         display: grid;

@@ -1,67 +1,3 @@
-// const lightbox = document.querySelector('.lightbox')
-// const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
-// const content = document.querySelector('.lightbox-content')
-// const lightboxImage = document.querySelector('.lightbox-media')
-// const lightboxButtons = document.querySelectorAll('.lightbox-button')
-//
-// let isLightboxOpen = false;
-// let currentImageIndex;
-//
-// const openLightbox = () => {
-//     isLightboxOpen = true;
-//     lightbox.style.pointerEvents = 'all';
-//     lightbox.style.opacity = '1';
-// }
-//
-// const closeLightbox = () => {
-//     isLightboxOpen = false;
-//     lightbox.style.pointerEvents = 'none';
-//     lightbox.style.opacity = '0';
-// }
-//
-// const modifyLightboxImage = (src) => {
-//     lightboxImage.src = src;
-//     currentImageIndex = galleryItems.indexOf(galleryItems.find(element => element.querySelector('img').src === src));
-// }
-//
-// galleryItems.forEach(element => {
-//     element.addEventListener('click', (e) => {
-//         openLightbox();
-//         modifyLightboxImage(e.target.src);
-//     })
-// });
-//
-// lightbox.addEventListener('click', (e) => {
-//     if (isLightboxOpen && e.target !== lightboxImage && e.target !== lightboxButtons[0].querySelector('svg') && e.target !== lightboxButtons[1].querySelector('svg')) {
-//         e.stopPropagation();
-//         closeLightbox();
-//     }
-// });
-//
-// lightboxButtons[0].addEventListener('click', (e) => {
-//     if (isLightboxOpen) {
-//         e.stopPropagation();
-//         if (currentImageIndex === 0) {
-//             modifyLightboxImage(galleryItems[galleryItems.length - 1].querySelector('img').src);
-//         } else {
-//             modifyLightboxImage(galleryItems[currentImageIndex - 1].querySelector('img').src);
-//         }
-//     }
-// })
-//
-//
-// lightboxButtons[1].addEventListener('click', (e) => {
-//     if (isLightboxOpen) {
-//         e.stopPropagation();
-//         if (currentImageIndex === galleryItems.length - 1) {
-//             modifyLightboxImage(galleryItems[0].querySelector('img').src);
-//         } else {
-//             modifyLightboxImage(galleryItems[currentImageIndex + 1].querySelector('img').src);
-//         }
-//     }
-// });
-
-
 const lightbox = document.createElement('div');
 const lightboxContent = document.createElement('div');
 const lightboxImage = document.createElement('img');
@@ -124,25 +60,50 @@ lightbox.addEventListener('click', (e) => {
     }
 });
 
+const goLeft = () => {
+    if (currentImageIndex === 0) {
+        modifyLightboxImage(galleryItems[galleryItems.length - 1].querySelector('img').src);
+    } else {
+        modifyLightboxImage(galleryItems[currentImageIndex - 1].querySelector('img').src);
+    }
+}
+
+const goRight = () => {
+    if (currentImageIndex === galleryItems.length - 1) {
+        modifyLightboxImage(galleryItems[0].querySelector('img').src);
+    } else {
+        modifyLightboxImage(galleryItems[currentImageIndex + 1].querySelector('img').src);
+    }
+}
+
 lightboxButtonLeft.addEventListener('click', (e) => {
     if (isLightboxOpen) {
         e.stopPropagation();
-        if (currentImageIndex === 0) {
-            modifyLightboxImage(galleryItems[galleryItems.length - 1].querySelector('img').src);
-        } else {
-            modifyLightboxImage(galleryItems[currentImageIndex - 1].querySelector('img').src);
-        }
+        goLeft();
     }
-})
-
+});
 
 lightboxButtonRight.addEventListener('click', (e) => {
     if (isLightboxOpen) {
         e.stopPropagation();
-        if (currentImageIndex === galleryItems.length - 1) {
-            modifyLightboxImage(galleryItems[0].querySelector('img').src);
-        } else {
-            modifyLightboxImage(galleryItems[currentImageIndex + 1].querySelector('img').src);
-        }
+        goRight();
     }
 });
+
+window.addEventListener('keydown', (e) => {
+    // check for left and right arrow keys
+    if (!isLightboxOpen) return;
+    switch (e.key) {
+        case 'ArrowLeft': {
+            goLeft();
+            break;
+        }
+        case 'ArrowRight': {
+            goRight();
+            break;
+        }
+        case 'Escape': {
+            closeLightbox();
+        }
+    }
+})

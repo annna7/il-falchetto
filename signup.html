@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Il Falchetto">
+	<meta name="description" content="Il Falchetto - Italian Cuisine ">
+	<meta name="keywords" content="Italian, Cuisine, Restaurant, Food, Pasta">
+	<title>Il Falchetto</title>
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Vollkorn&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Unica+One&display=swap"
+	      rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+		<script src="assets/scripts/auth.js" defer></script>
+		<script src="assets/scripts/nav.js" async></script>
+	</head>
+	<body>
+		<header>
+			<div class="header-nav-container sticky">
+				<div class="header-nav">
+					<h1><a href="index.html">Il Falchetto</a></h1>
+					<nav>
+						<ul>
+							<li>
+								<div class="dropdown">
+									<span>Menu</span>
+									<div class="dropdown-content">
+										<a href="menu.html#main-courses">Main Courses</a>
+										<a href="menu.html#desert">Desert</a>
+										<a href="menu.html#drinks">Drinks</a>
+									</div>
+								</div>
+							</li>
+							<li><a href="gallery.html">Gallery</a></li>
+							<li><a href="index.html#contact"> Contact </a>
+							</li>
+							<li>
+								<div class="dropdown">
+									<span><i class="fas fa-user"></i></span>
+									<div class="dropdown-content">
+									</div>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="acc-wrapper">
+				<div class="acc-form" thing="signup">
+					<h2 class="yellow">Create an account!</h2>
+					<div class="acc-input">
+						<label for="first-name">First Name</label>
+						<input type="text" name="first-name" id="first-name" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="last-name">Last Name</label>
+						<input type="text" name="last-name" id="last-name" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="cr-password">Password</label>
+						<input type="password" name="cr-password" id="cr-password" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="re-password">Confirm Password</label>
+						<input type="password" name="re-password" id="re-password" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="gender">Gender</label>
+						<div class="radio-container">
+							<input type="radio" name="gender" value="male" checked="checked">Male</input>
+							<input type="radio" name="gender" value="female">Female</input>
+							<input type="radio" name="gender" value="other">Other/Prefer not to disclose</input>
+						</div>
+					</div>
+					<div class="acc-input">
+						<label for="phone">Phone number</label>
+						<input type="text" name="phone" id="phone" required>
+					</div>
+					<div class="acc-input">
+						<label for="birthday">Birthday</label>
+						<input type="date" name="birthday" id="birthday" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="address">Address</label>
+						<input type="text" name="address" id="address" placeholder="" required>
+					</div>
+					<div class="acc-input">
+						<label for="obs">Additional observations</label>
+						<textarea name="obs" id="obs"
+						          placeholder="Tell us if there is anything else you'd lke to share!"></textarea>
+					</div>
+					<div class="submit">
+						<button class="submit-btn" type="submit">
+							Submit
+						</button>
+						<svg class="btn__progress" viewBox="0 0 48 48" width="48px" height="48px">
+							<circle class="btn__progress-track" r="20" cx="24" cy="24" fill="none" stroke="#c7cad1" stroke-width="8" />
+							<circle class="btn__progress-fill" r="20" cx="24" cy="24" fill="none" stroke="#000000" stroke-width="8" transform="rotate(-90,24,24)" stroke-dasharray="125.66 125.66" stroke-dashoffset="125.66" />
+							<polyline class="btn__progress-check" points="12,24 20,32 36,16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="34 34" stroke-dashoffset="34" />
+						</svg>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<p>Il Falchetto &copy; 2022. All rights reserved. </p>
+		</footer>
+	</body>
+</html>
