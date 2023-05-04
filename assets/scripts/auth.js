@@ -101,6 +101,7 @@ const submit = () => {
     if (!ans) {
         return;
     }
+    const inputs = Array.from(document.querySelectorAll(".acc-input input"));g
     let formType = document.querySelector(".acc-form").getAttribute('thing');
     switch (formType) {
         case 'signup': {
@@ -152,3 +153,4 @@ window.addEventListener("keydown", function(e) {
         submit();
     }
 });
+
