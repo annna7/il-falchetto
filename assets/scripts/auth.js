@@ -101,7 +101,7 @@ const submit = () => {
     if (!ans) {
         return;
     }
-    const inputs = Array.from(document.querySelectorAll(".acc-input input"));g
+    const inputs = Array.from(document.querySelectorAll(".acc-input input"));
     let formType = document.querySelector(".acc-form").getAttribute('thing');
     switch (formType) {
         case 'signup': {
