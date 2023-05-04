@@ -359,10 +359,35 @@ blockquote {
     margin-bottom: 15px;
 }
 
+.recommended {
+    text-align: center;
+    background-color: #333333;
+    color: #debfa6;
+    padding: 30px;
+    border-radius: 30px;
+    min-width: fit-content;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.recommended h3 {
+    color: #c59975;
+    text-shadow: 2px 2px #1d1d1d;
+}
+
+.recommended h4 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.recommended p {
+    font-size: 1.2em;
+    margin: 0;
+}
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     gap: 20px;
     text-align: center;
     background: #8c715b;
@@ -752,6 +777,13 @@ input[type="radio"]:checked::before {
     transform: scale(1);
 }
 
+.price {
+    color: #332f30;
+    display: block;
+    text-shadow: 5px 5px #c59975;
+    font-size: 1.5em;
+}
+
 @media screen and (max-width: 1000px) {
     .gallery {
         display: grid;
@@ -804,7 +836,6 @@ input[type="radio"]:checked::before {
 
     .menu-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 1fr);
     }
 }
 @media screen and (max-width: 500px) {
