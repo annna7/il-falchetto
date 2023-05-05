@@ -41,18 +41,13 @@ let recommended = document.createElement('div');
 recommended.classList.add('recommended');
 let recIndex = Math.floor(Math.random() * menu_items.length);
 let recTitle = document.createElement('h3');
-if (JSON.parse(localStorage.getItem('logged'))) {
-    recTitle.textContent = getCurrentUser().first_name + ' ' + getCurrentUser().last_name + ', check this out! ';
-} else {
-    recTitle.textContent = 'Check this out! ';
-}
-
-recTitle.textContent += 'Our chef recommends:';
+recTitle.textContent += 'Check this out! Our chef recommends:';
 recommended.appendChild(recTitle);
 let recMeal = document.createElement('h4');
 let textMeal = document.createElement('p');
 textMeal.textContent = parsed_meals[recIndex].description + '... at only ' + parsed_meals[recIndex].price + '$!';
 recMeal.textContent = parsed_meals[recIndex].name;
+recommended.style.fontFamily = window.getComputedStyle(document.querySelector('.menu-grid-item')).getPropertyValue('fontFamily');
 recommended.appendChild(recMeal);
 recommended.appendChild(textMeal);
 const content = document.querySelector('.content');
