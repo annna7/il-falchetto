@@ -1,6 +1,5 @@
 const submitBox = document.querySelector(".submit");
 const submitBtn = document.querySelector(".submit-btn");
-const submitProgress = document.querySelector(".btn__progress");
 const submitDuration = 2000;
 const RED = "#8c0505";
 

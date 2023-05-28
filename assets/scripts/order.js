@@ -19,6 +19,7 @@ placeOrder = (meal) => {
     localStorage.setItem(localStorage.getItem('loggedUser'), JSON.stringify({ ...getCurrentUser(), orders: JSON.parse(JSON.stringify(user_orders))}));
     window.location.reload();
 }
+
 menu_items.forEach(item => {
     let meal = {};
     meal.name = item.querySelector('h4').textContent.trim();
@@ -27,7 +28,9 @@ menu_items.forEach(item => {
     meal.price = meal.price.split('\n')[0].trim();
     meal.price = parseFloat(meal.price);
     parsed_meals.push(meal);
-    addOrderButton(item);
+    if (localStorage.getItem('logged') && JSON.parse(localStorage.getItem('logged')) == true) {
+        addOrderButton(item);
+    }
 });
 
 order_buttons.forEach(button => {
